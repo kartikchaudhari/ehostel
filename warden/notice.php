@@ -46,7 +46,7 @@
                         <div role="tabpanel" class="tab-pane active" id="add">
                             <br>
                             <div class="col-md-12">
-                                <form action="" method="POST" role="form">
+                                <form action="<?=$_SERVER['PHP_SELF'];?>" method="POST" role="form">
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="notice_title" placeholder="Enter Notice Title" required="required">
                                     </div>
@@ -73,7 +73,7 @@
                                 <?php 
                                     if (isset($_POST['btnSubmit'])) {
                                         $title=clean($_POST['notice_title']);
-                                        $desc=$_POST['notice_desc'];
+                                        $desc=html_encoder($_POST['notice_desc']);
                                         
                                         $sql="INSERT INTO eh_notice_board(  notice_title,notice_desc,created_by,created_by_id,created_for) 
                                             VALUES('$title','$desc',".$_POST['created_by'].",".$_POST['created_by_id'].",".$_POST['created_for'].")";
@@ -100,7 +100,7 @@
                                     <thead>
                                         <tr>
                                             <th>Sr. No</th>
-                                            <th>Notice Title</th>
+                                            <th class="col-md-5">Notice Title</th>
                                             <th>Created By</th>
                                             <th>Created On</th>
                                             <th>Actions</th>
@@ -118,9 +118,28 @@
                                                     <tr>
                                                         <td><?=$i;?></td>
                                                         <td><?=$row['notice_title']?></td>
-                                                        <td><?=$row['created_by_id']?></td>
+                                                        <td><?php 
+                                                                $info=pull_warden_by_id($row['created_by_id']);
+                                                                echo $info['first_name']." ".$info['last_name'];
+                                                            ?></td>
                                                         <td><?=$row['notice_creation_date']?></td>
-                                                        <td><?=$row['notice_id']?></td>
+                                                        <td>
+                                                            <div class="btn-group">
+                                                                <?php 
+                                                                    $view_url=base_url('warden/notice/single.php?notice_id='.base64_encode($row['notice_id']));
+                                                                ?>
+                                                                <button type="button" class="btn btn-primary" onclick="openWindow('<?=$view_url;?>')">View</button>
+                                                                <?php 
+                                                                    if ($row['created_by_id']==$_SESSION['w_id']) {
+                                                                    $edit_url=base_url('warden/notice/edit.php?notice_id='.base64_encode($row['notice_id']));
+                                                                ?>
+                                                                    <button type="button" class="btn btn-success" onclick="openWindow('<?=$edit_url;?>')">Update</button>
+                                                                    <button type="button" class="btn btn-danger">Delete</button>
+                                                                <?php 
+                                                                    }
+                                                                ?>
+                                                            </div>
+                                                        </td>
                                                     </tr>
                                         <?php
                                                 $i++;

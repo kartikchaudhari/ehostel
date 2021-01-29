@@ -37,7 +37,6 @@
           </ul>
         </li>
         <?php
-
             @session_start();
             if (isset($_SESSION['user_type'])) {
                 switch ($_SESSION['user_type']) {
@@ -59,13 +58,13 @@
                 case 'warden':{
                       echo '
                         <li>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> '.$_SESSION['name'].' <span class="caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> '.$_SESSION['w_name'].' <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="'.base_url('admin/dashboard.php').'"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                                <li><a href="'.base_url('admin/profile.php').'"><i class="fa fa-user"></i> Profile </a></li>
-                                <li><a href="'.base_url('admin/settings/settings.php').'"><i class="fa fa-cog"></i> Settings</a></li>
+                                <li><a href="'.base_url('warden/dashboard.php').'"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                                <li><a href="'.base_url('warden/profile.php').'"><i class="fa fa-user"></i> Profile </a></li>
+                                <li><a href="'.base_url('warden/settings/settings.php').'"><i class="fa fa-cog"></i> Settings</a></li>
                                 <li class="divider"></li>
-                                <li><a href="'.base_url('admin/logout.php').'"><i class="fa fa-sign-out"></i> Log out</a></li>
+                                <li><a href="'.base_url('warden/logout.php').'"><i class="fa fa-sign-out"></i> Log out</a></li>
                             </ul>
                         </li>';
                 }

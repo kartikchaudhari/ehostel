@@ -65,6 +65,7 @@
 
 					$_SESSION['w_id']=$row['warden_id'];
 					$_SESSION['w_name']=$row['first_name']." ".$row['last_name'];
+					$_SESSION['user_type']='warden';
 					
 					header("location:dashboard.php");
 				}

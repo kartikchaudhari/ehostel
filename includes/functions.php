@@ -227,6 +227,7 @@ echo '<!DOCTYPE html>
         <meta name="description" content="">
         <meta name="author" content="">
         <title>'.$title.'</title>
+        <link rel="icon" href="'.base_url('assets/images/favicon.ico').'" type="image/x-icon">
         <link rel="stylesheet" href="'.base_url('assets/css/css/bootstrap.css').'">
         <link rel="stylesheet" href="'.base_url('assets/css/sb-admin.css').'">
         

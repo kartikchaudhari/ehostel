@@ -1,7 +1,6 @@
 <?php 
   	require __DIR__.'../../../includes/functions.php';
 	put_head("eHostel :: Notice Board",null,false);
-	include __DIR__.'../../../includes/nav.php';
 ?>  
 <div class="container-fluid" style="min-height: 502px;">
 	<?php
@@ -34,11 +33,12 @@
 
 						<div class="panel panel-info">
 							<div class="panel-body">
-								<?=html_decoder($row['notice_desc'])?>
+								<?=html_decoder($row['notice_desc']);?>
 							</div>
 						</div>
 					</div>
 				</div>
+				<center><button type="button" class="btn btn-primary" onclick="window.close();">Close</button></center>
 			</div>
 	<?php
 			}
@@ -47,5 +47,5 @@
 </div>
 <!-- the footer -->
 <?php 
-	put_footer(true,null);
+	put_footer(false,null);
 ?>
